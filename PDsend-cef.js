@@ -13,7 +13,7 @@ var example = {
           "load avg": 0.75
         }
   },
-  "routing_key": "bc2b543e95ec4137a4966e6d8b88449e",
+//   "routing_key": "bc2b543e95ec4137a4966e6d8b88449e",
   "event_action": "trigger",
   "client": "Sample Monitoring Service",
   "client_url": "https://monitoring.service.com",
