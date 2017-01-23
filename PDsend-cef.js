@@ -1,33 +1,7 @@
 var example = {
     "payload": {
-        "summary": "Example Summary",
-        "timestamp": "2015-07-17T08:42:58.315+0000",
-        "severity": "critical",
-        "source": "aws:elasticache:us-east-1:852559987:cluster/api-stats-prod-003",
-        "location": "Datacenter 7",
-        "component": "mysql",
-        "group": "prod-datapipe",
-        "class": "deploy",
-        "details": {
-          "ping time": "1500ms",
-          "load avg": 0.75
-        }
   },
-//   "routing_key": "bc2b543e95ec4137a4966e6d8b88449e",
   "event_action": "trigger",
-  "client": "Sample Monitoring Service",
-  "client_url": "https://monitoring.service.com",
-  "links": [
-    {
-	    "text": "This is a sample link",
-      "href": "http://acme.pagerduty.com"
-    }
-  ],
-  "images": [
-    {
-      "src": "https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1"
-    }
-  ]
 };
 
 function getParameterByName(name) {
@@ -88,10 +62,15 @@ function loadFormValues(name) {
 
 
 function populateSaved() {
+	console.log('here');
 	$('#saved').html('');
 	var savedListStr = localStorage.getItem("saved");
 	if ( ! savedListStr ) {
-		return;
+		console.log('here');
+		savedListStr = JSON.stringify(["Example Event"]);
+		var exampleStr = "{\"trigger-dest-select\":\"857db1e8027d443fb6a47fdd543ad9e8\",\"payload.summary\":\"Example Summary\",\"payload.severity\":\"critical\",\"payload.source\":\"aws:elasticache:us-east-1:852559987:cluster/api-stats-prod-003\",\"payload.location\":\"Datacenter 7\",\"payload.component\":\"mysql\",\"payload.group\":\"prod-datapipe\",\"payload.class\":\"deploy\",\"client\":\"Sample Monitoring Service\",\"client_url\":\"https://monitoring.service.com\",\"links.text\":\"This is a sample link\",\"links.href\":\"http://acme.pagerduty.com\",\"images.src\":\"https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1\"}"
+		localStorage.setItem("Example Event", exampleStr);
+		localStorage.setItem("saved", savedListStr);
 	}
 	savedList = JSON.parse(savedListStr);
 
