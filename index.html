@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>PagerDuty Tool</title>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css" rel="stylesheet">
+		<link href="PDsend-cef.css" rel="stylesheet">
+	</head>
+	<body>
+		<div id="content" class="container-fluid">
+			<div class="row">
+				<div class="col-md-3">
+					<form id="event-form">
+						<table class="table">
+						<tr><td>Destination:</td><td><select class="selectpicker" id="trigger-dest-select"></select></td>
+						<tr><td>Summary:</td><td> <input type="text" name="payload[summary]" style="width: 100%" id="payload.summary"><br></td></tr>
+						<tr><td>Severity:</td><td> <select class="selectpicker" name="payload[severity]" id="payload.severity">
+							<option value="info">Info</option>
+							<option value="warning">Warning</option>
+							<option value="error">Error</option>
+							<option value="critical">Critical</option>
+						</select><br></td></tr>
+						<tr><td>Source:</td><td> <input type="text" name="payload[source]" style="width: 100%" id="payload.source"><br></td></tr>
+						<tr><td>Location:</td><td> <input type="text" name="payload[location]" style="width: 100%" id="payload.location"><br></td></tr>
+						<tr><td>Component:</td><td> <input type="text" name="payload[component]" style="width: 100%" id="payload.component"><br></td></tr>
+						<tr><td>Group:</td><td> <input type="text" name="payload[group]" style="width: 100%" id="payload.group"><br></td></tr>
+						<tr><td>Class:</td><td> <input type="text" name="payload[class]" style="width: 100%" id="payload.class"><br></td></tr>
+						<tr><td>Client:</td><td> <input type="text" name="client" style="width: 100%" id="client"><br></td></tr>
+						<tr><td>Client URL:</td><td> <input type="text" name="client_url" style="width: 100%" id="client_url"><br></td></tr>
+						<tr><td>Link text:</td><td> <input type="text" name="links[][text]" style="width: 100%" id="links.text"><br></td></tr>
+						<tr><td>Link URL:</td><td> <input type="text" name="links[][href]" style="width: 100%" id="links.href"><br></td></tr>
+						<tr><td>Image URL:</td><td> <input type="text" name="images[][src]" style="width: 100%" id="images.src"><br></td></tr>
+						</table>
+					</form>
+					<div align="right">
+						<button class="btn btn-primary" id="trigger-send-button">Send</button>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div>
+						<input type="text" id="save-name">
+						<button class="btn btn=default" id="save-button">Save</button>
+<!-- 						<button class="btn btn=default" id="load-button">Load</button> -->
+					</div>
+					<div id="saved">
+					</div>
+				</div>
+				<div class="col-md-6" id="result"></div>
+			</div>
+		</div>
+		<div class="busy">
+			<img class="spinner" src="spinner.gif">
+			<div class="progress">
+				<div id="progressbar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+					0%
+				</div>
+			</div>
+		</div>
+
+
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/async/2.1.2/async.js"></script>
+		<script src="PDsend-cef.js"></script>
+	</body>
+</html>
