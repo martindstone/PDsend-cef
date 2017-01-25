@@ -58,6 +58,8 @@ function loadFormValues(name) {
 	Object.keys(values).forEach(function(key) {
 		$('#event-form :input[id="' + key + '"]').val(values[key]);
 	});
+	$('.selectpicker').selectpicker('refresh');
+
 }
 
 
@@ -205,15 +207,23 @@ function main() {
 	$('#trigger-send-button').click(function() {
 
 		var formValues = $('#event-form').serializeObject();
-		removeEmpty(formValues);
 
 		var merged = $.extend(true, {
 			routing_key: $('#trigger-dest-select').val(),
 			timestamp: (new Date()).toISOString()
 		}, 
 		example, formValues);
+		removeEmpty(merged);
 		
-			var options = {
+		// get rid of empty values in links and images
+		if ( merged.links && merged.links.length === 1 && Object.keys(merged.links[0]).length === 0 ) {
+			delete merged.links;
+		}
+		if ( merged.images && merged.images.length === 1 && Object.keys(merged.images[0]).length === 0 ) {
+			delete merged.images;
+		}
+
+		var options = {
 			data: JSON.stringify(merged),
 			success: function(data) {
 				$('#result').append(JSON.stringify(data) + "<br>");
