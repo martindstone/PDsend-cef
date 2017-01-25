@@ -62,13 +62,11 @@ function loadFormValues(name) {
 
 
 function populateSaved() {
-	console.log('here');
 	$('#saved').html('');
 	var savedListStr = localStorage.getItem("saved");
 	if ( ! savedListStr ) {
-		console.log('here');
 		savedListStr = JSON.stringify(["Example Event"]);
-		var exampleStr = "{\"trigger-dest-select\":\"857db1e8027d443fb6a47fdd543ad9e8\",\"payload.summary\":\"Example Summary\",\"payload.severity\":\"critical\",\"payload.source\":\"aws:elasticache:us-east-1:852559987:cluster/api-stats-prod-003\",\"payload.location\":\"Datacenter 7\",\"payload.component\":\"mysql\",\"payload.group\":\"prod-datapipe\",\"payload.class\":\"deploy\",\"client\":\"Sample Monitoring Service\",\"client_url\":\"https://monitoring.service.com\",\"links.text\":\"This is a sample link\",\"links.href\":\"http://acme.pagerduty.com\",\"images.src\":\"https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1\"}"
+		var exampleStr = "{\"payload.summary\":\"Example Summary\",\"payload.severity\":\"critical\",\"payload.source\":\"aws:elasticache:us-east-1:852559987:cluster/api-stats-prod-003\",\"payload.location\":\"Datacenter 7\",\"payload.component\":\"mysql\",\"payload.group\":\"prod-datapipe\",\"payload.class\":\"deploy\",\"client\":\"Sample Monitoring Service\",\"client_url\":\"https://monitoring.service.com\",\"links.text\":\"This is a sample link\",\"links.href\":\"http://acme.pagerduty.com\",\"images.src\":\"https://chart.googleapis.com/chart?chs=600x400&chd=t:6,2,9,5,2,5,7,4,8,2,1&cht=lc&chds=a&chxt=y&chm=D,0033FF,0,0,5,1\"}"
 		localStorage.setItem("Example Event", exampleStr);
 		localStorage.setItem("saved", savedListStr);
 	}
@@ -129,6 +127,7 @@ function PDCEFEvent(options) {
 			"Accept": "application/vnd.pagerduty+json;version=2.0"
 		},
 		url: "https://events.pagerduty.com/enqueue"
+
 	},
 	options);
 	
