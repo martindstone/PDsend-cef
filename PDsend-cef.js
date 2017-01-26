@@ -208,6 +208,8 @@ function main() {
 	
 	$('#trigger-send-button').click(function() {
 
+		$('#result').html('');
+
 		var formValues = $('#event-form').serializeObject();
 
 		var merged = $.extend(true, {
@@ -216,7 +218,7 @@ function main() {
 		}, 
 		example, formValues);
 		removeEmpty(merged);
-		
+
 		// get rid of empty values in links and images
 		if ( merged.links && merged.links.length === 1 && Object.keys(merged.links[0]).length === 0 ) {
 			delete merged.links;
@@ -225,18 +227,28 @@ function main() {
 			delete merged.images;
 		}
 
-		var options = {
-			data: JSON.stringify(merged),
-			success: function(data) {
-				$('#result').append(JSON.stringify(data) + "<br>");
-			},
-			error: function(err) {
-				console.log(err);
-			}
-		};
-		PDCEFEvent(options);
+		var n = parseInt($('#times').val());
+
+		async.times(n, function(n, next) {
+			$('#result').append('Sending event number ' + n + '<br>\n');
+			var options = {
+				data: JSON.stringify(merged),
+				success: function(data) {
+					$('#result').append('Event number ' + n + ' success: ' + JSON.stringify(data) + "<br>");
+					next(null, 'yay');
+				},
+				error: function(err) {
+					$('#result').append('Event number ' + n + ' failure: ' + JSON.stringify(err) + "<br>");
+					next(err);
+				}
+			};
+			PDCEFEvent(options);
+		},
+		function(err, data) {
+			$('#result').append('All done!<br>');
+		});
 	});
-	
+
 	$('#save-button').click(function() {
 		saveFormValues($('#save-name').val());
 	});
