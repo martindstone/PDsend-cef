@@ -14,9 +14,11 @@
 		<div id="content" class="container-fluid">
 			<div class="row">
 				<div class="col-md-4">
+					<table class="table">
+						<tr><td>Destination:</td><td><select class="selectpicker" id="trigger-dest-select"></select></td></tr>
+					</table>
 					<form id="event-form">
 						<table class="table">
-						<tr><td>Destination:</td><td><select class="selectpicker" id="trigger-dest-select"></select></td>
 						<tr><td>Summary:</td><td> <input type="text" name="payload[summary]" style="width: 100%" id="payload.summary"><br></td></tr>
 						<tr><td>Severity:</td><td> <select class="selectpicker" name="payload[severity]" id="payload.severity">
 							<option value="info">Info</option>

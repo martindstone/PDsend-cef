@@ -32,8 +32,10 @@ function saveFormValues(name) {
 	});
 
 	localStorage.setItem(name, JSON.stringify(values));
-	savedList.push(name);
-	localStorage.setItem("saved", JSON.stringify(savedList));
+	if ( savedList.indexOf(name) == -1 ) {
+		savedList.push(name);
+		localStorage.setItem("saved", JSON.stringify(savedList));
+	}
 	populateSaved();
 }
 
