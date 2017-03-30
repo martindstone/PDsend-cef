@@ -130,7 +130,7 @@ function PDCEFEvent(options) {
 		headers: {
 			"Accept": "application/vnd.pagerduty+json;version=2.0"
 		},
-		url: "https://events.pagerduty.com/enqueue"
+		url: "https://events.pagerduty.com/v2/enqueue"
 
 	},
 	options);
